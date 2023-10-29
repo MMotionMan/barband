@@ -2,10 +2,10 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import test_pb2 as test__pb2
+import protobufs.grpc_change_index_pb2 as grpc__change__index__pb2
 
 
-class RecommendationsStub(object):
+class ChangeIndexStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,42 +14,42 @@ class RecommendationsStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Recommend = channel.unary_unary(
-                '/Recommendations/Recommend',
-                request_serializer=test__pb2.RecommendationRequest.SerializeToString,
-                response_deserializer=test__pb2.RecommendationResponse.FromString,
+        self.Change = channel.unary_unary(
+                '/barband_change_index.ChangeIndex/Change',
+                request_serializer=grpc__change__index__pb2.RequestToIndex.SerializeToString,
+                response_deserializer=grpc__change__index__pb2.Response.FromString,
                 )
 
 
-class RecommendationsServicer(object):
+class ChangeIndexServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def Recommend(self, request, context):
+    def Change(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_RecommendationsServicer_to_server(servicer, server):
+def add_ChangeIndexServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Recommend': grpc.unary_unary_rpc_method_handler(
-                    servicer.Recommend,
-                    request_deserializer=test__pb2.RecommendationRequest.FromString,
-                    response_serializer=test__pb2.RecommendationResponse.SerializeToString,
+            'Change': grpc.unary_unary_rpc_method_handler(
+                    servicer.Change,
+                    request_deserializer=grpc__change__index__pb2.RequestToIndex.FromString,
+                    response_serializer=grpc__change__index__pb2.Response.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'Recommendations', rpc_method_handlers)
+            'barband_change_index.ChangeIndex', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Recommendations(object):
+class ChangeIndex(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def Recommend(request,
+    def Change(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +59,8 @@ class Recommendations(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/Recommendations/Recommend',
-            test__pb2.RecommendationRequest.SerializeToString,
-            test__pb2.RecommendationResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/barband_change_index.ChangeIndex/Change',
+            grpc__change__index__pb2.RequestToIndex.SerializeToString,
+            grpc__change__index__pb2.Response.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

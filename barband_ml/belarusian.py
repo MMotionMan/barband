@@ -1,5 +1,5 @@
 from tqdm import tqdm
-from transformers import AutoTokenizer, AutoModel, AutoModelForTokenClassification
+from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
 
 
@@ -89,9 +89,9 @@ def text_to_tensor(category, text, description, tags, tokenizer, model, embeddin
         return sentence_embedding
 
 #
-# tokenizer = AutoTokenizer.from_pretrained("KoichiYasuoka/bert-base-slavic-cyrillic-upos")
-# model = AutoModelForTokenClassification.from_pretrained("KoichiYasuoka/bert-base-slavic-cyrillic-upos",
-#                                                         output_hidden_states=True)
+tokenizer = AutoTokenizer.from_pretrained("KoichiYasuoka/bert-base-slavic-cyrillic-upos")
+model = AutoModelForTokenClassification.from_pretrained("KoichiYasuoka/bert-base-slavic-cyrillic-upos",
+                                                        output_hidden_states=True)
 #
 # text = 'прывітанне, як справы, чым наогул займаешся'
 # description = 'прывітанне, як справы, чым наогул займаешся'

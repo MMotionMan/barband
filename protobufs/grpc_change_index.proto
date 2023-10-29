@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package barband_change_index;
+
+enum ResponseStatus {
+    CRASHED = 0;
+    OK = 1;
+}
+
+enum ChangeType {
+    ADD = 0;
+    DELETE = 1;
+    UPDATE = 2;
+}
+
+message EventInfo {
+    int32 id = 1;
+    string description = 2;
+    string title = 3;
+    string language = 4;
+    repeated string tags = 5;
+    repeated string categories = 6;
+    repeated int32 category_level = 7;
+}
+
+message RequestToIndex {
+    repeated EventInfo events = 1;
+    ChangeType action = 2;
+}
+
+message Response {
+    string ErrorMessage = 1;
+}
+
+
+service ChangeIndex {
+    rpc Change(RequestToIndex) returns (Response);
+}
