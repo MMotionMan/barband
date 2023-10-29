@@ -1,4 +1,3 @@
-from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
 

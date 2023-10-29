@@ -1,11 +1,5 @@
 from transformers import AutoTokenizer, AutoModel
 import torch
-import numpy as np
-import pandas as pd
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-import faiss
-from scipy.stats import entropy
 
 tokenizer = AutoTokenizer.from_pretrained("ai-forever/sbert_large_nlu_ru")
 model = AutoModel.from_pretrained("ai-forever/sbert_large_nlu_ru", output_hidden_states=True)
