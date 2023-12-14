@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package barband_recommendations;
+
+message UserInfo{
+  int32 id = 1;
+  repeated int32 eventsIds = 2;
+}
+
+message RecForUser{
+  repeated int32 eventsIds=3;
+}
+
+service getRecommendations{
+  rpc Recommendations(UserInfo) returns (RecForUser);
+}
